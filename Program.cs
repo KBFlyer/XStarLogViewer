@@ -44,6 +44,8 @@ namespace MissionPlanner
         public static void Main(string[] args)
         {
             Program.args = args;
+
+            /*
             Console.WriteLine(
                 "If your error is about Microsoft.DirectX.DirectInput, please install the latest directx redist from here http://www.microsoft.com/en-us/download/details.aspx?id=35 \n\n");
             Console.WriteLine("Debug under mono    MONO_LOG_LEVEL=debug mono MissionPlanner.exe");
@@ -53,8 +55,11 @@ namespace MissionPlanner
             System.Windows.Forms.Application.EnableVisualStyles();
             XmlConfigurator.Configure();
             log.Info("******************* Logging Configured *******************");
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            */
 
+
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            
             ServicePointManager.DefaultConnectionLimit = 10;
 
             System.Windows.Forms.Application.ThreadException += Application_ThreadException;
@@ -73,8 +78,9 @@ namespace MissionPlanner
                 return;
             }
 
-            name = "Mission Planner";
 
+            name = "Mission Planner Log";
+            /*
             try
             {
                 if (File.Exists(Application.StartupPath + Path.DirectorySeparatorChar + "logo.txt"))
@@ -124,7 +130,7 @@ namespace MissionPlanner
             Controls.MainSwitcher.ApplyTheme += MissionPlanner.Utilities.ThemeManager.ApplyThemeTo;
             MissionPlanner.Controls.InputBox.ApplyTheme += MissionPlanner.Utilities.ThemeManager.ApplyThemeTo;
             Controls.BackstageView.BackstageViewPage.ApplyTheme += MissionPlanner.Utilities.ThemeManager.ApplyThemeTo;
-
+            */
             // setup settings provider
             MissionPlanner.Comms.CommsBase.Settings += CommsBase_Settings;
 
@@ -160,14 +166,12 @@ namespace MissionPlanner
 
             Utilities.NGEN.doNGEN();
 
-            log.InfoFormat("64bit os {0}, 64bit process {1}", System.Environment.Is64BitOperatingSystem,
-                System.Environment.Is64BitProcess);
-
             try
             {
                 //System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.RealTime;
                 Thread.CurrentThread.Name = "Base Thread";
-                Application.Run(new MainV2());
+                //Application.Run(new MainV2());
+                Application.Run(new Log.LogBrowse());
             }
             catch (Exception ex)
             {

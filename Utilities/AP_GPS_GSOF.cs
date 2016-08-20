@@ -84,6 +84,7 @@ namespace MissionPlanner.Utilities
                 , 0x0, 0x3
             };
 
+            uint8_t check = 0;
             buffer[buffer.Length - 2] = (byte) (buffer.Sum(num => num) - 3 - 2); // 3 = etx 2 = stx
 
             port.Write(buffer, 0, buffer.Length);
@@ -108,6 +109,7 @@ namespace MissionPlanner.Utilities
                     , 0x0, 0x3
                 };
 
+                uint8_t check = 0;
                 buffer[buffer.Length - 2] = (byte) (buffer.Sum(num => num) - 3 - 2); // 3 = etx 2 = stx
 
                 port.Write(buffer, 0, buffer.Length);
@@ -133,6 +135,7 @@ namespace MissionPlanner.Utilities
                 , 0x0, 0x3
             }; // checksum and END
 
+            uint8_t check = 0;
             buffer[buffer.Length - 2] = (byte) (buffer.Sum(num => num) - 3 - 2); // 3 = etx 2 = stx
 
             port.Write(buffer, 0, buffer.Length);

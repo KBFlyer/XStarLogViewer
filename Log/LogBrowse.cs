@@ -25,6 +25,7 @@ namespace MissionPlanner.Log
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         DataTable m_dtCSV = new DataTable();
+        public GCSViews.FlightData FlightData = new GCSViews.FlightData();
 
         CollectionBuffer logdata;
         Hashtable logdatafilter = new Hashtable();
@@ -365,8 +366,8 @@ namespace MissionPlanner.Log
             mapoverlay = new GMapOverlay("overlay");
             markeroverlay = new GMapOverlay("markers");
 
-            if (GCSViews.FlightData.mymap != null)
-                myGMAP1.MapProvider = GCSViews.FlightData.mymap.MapProvider;
+            //if (FlightData.mymap != null)
+            //    myGMAP1.MapProvider = FlightData.mymap.MapProvider;
 
             myGMAP1.Overlays.Add(mapoverlay);
             myGMAP1.Overlays.Add(markeroverlay);
@@ -1807,9 +1808,9 @@ namespace MissionPlanner.Log
             {
                 log.Info("Get map");
 
-                myGMAP1.MapProvider = GCSViews.FlightData.mymap.MapProvider;
+                //myGMAP1.MapProvider = FlightData.mymap.MapProvider;
 
-                // DrawMap();
+                 DrawMap();
 
                 log.Info("map done");
             }

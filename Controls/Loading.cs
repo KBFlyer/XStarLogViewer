@@ -23,7 +23,7 @@ namespace MissionPlanner.Controls
             InitializeComponent();
         }
 
-        public new string Text 
+        public string Text 
         {
             get { return label1.Text; }
             set
@@ -39,7 +39,7 @@ namespace MissionPlanner.Controls
             }
         }
 
-        public new static void Close()
+        public static void Close()
         {
             if (Instance != null)
             {
@@ -80,11 +80,11 @@ namespace MissionPlanner.Controls
 
                 ThemeManager.ApplyThemeTo(frm);
 
-                MainV2.instance.Invoke((MethodInvoker) delegate
-                {
-                    frm.Show(owner);
+               // MainV2.instance.Invoke((MethodInvoker) delegate
+               // {
+                    //frm.Show(owner);
                     Application.DoEvents();
-                });
+                //});
 
                 Instance = frm;
 

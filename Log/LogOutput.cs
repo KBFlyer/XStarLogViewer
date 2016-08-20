@@ -302,7 +302,7 @@ namespace MissionPlanner.Log
             stream.Close();
 
             // create kmz - aka zip file
-
+            /*
             FileStream fs = File.Open(filename.Replace(".log-fp.kml", "-fp.kmz"), FileMode.Create);
             ZipOutputStream zipStream = new ZipOutputStream(fs);
             zipStream.SetLevel(9); //0-9, 9 being the highest level of compression
@@ -350,6 +350,7 @@ namespace MissionPlanner.Log
 
             zipStream.IsStreamOwner = true; // Makes the Close also Close the underlying stream
             zipStream.Close();
+            */
 
             positionindex = 0;
             modelist.Clear();

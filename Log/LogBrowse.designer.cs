@@ -37,7 +37,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.zg1 = new ZedGraph.ZedGraphControl();
-            this.myGMAP1 = new MissionPlanner.Controls.myGMAP();
+            this.myGMAP1 =  new MissionPlanner.Controls.myGMAP();
             this.chk_time = new System.Windows.Forms.CheckBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.CMB_preselect = new System.Windows.Forms.ComboBox();

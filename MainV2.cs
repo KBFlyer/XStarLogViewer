@@ -2151,6 +2151,7 @@ namespace MissionPlanner
                         }
                         try
                         {
+                            int todo; // need a reset method
                             altwarningmax = (int) Math.Max(MainV2.comPort.MAV.cs.alt, altwarningmax);
 
                             if (Settings.Instance.GetBoolean("speechaltenabled") == true && MainV2.comPort.MAV.cs.alt != 0.00 &&
@@ -2185,12 +2186,6 @@ namespace MissionPlanner
                         catch
                         {
                         }
-                    }
-
-                    // not doing anything
-                    if (!MainV2.comPort.logreadmode && !comPort.BaseStream.IsOpen)
-                    {
-                        altwarningmax = 0;
                     }
 
                     // attenuate the link qualty over time

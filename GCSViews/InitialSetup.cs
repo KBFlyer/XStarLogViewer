@@ -45,16 +45,6 @@ namespace MissionPlanner.GCSViews
             get { return isConnected && MainV2.comPort.MAV.aptype == MAVLink.MAV_TYPE.HELICOPTER; }
         }
 
-        public bool isQuadPlane
-        {
-            get
-            {
-                return isConnected && isPlane &&
-                       MainV2.comPort.MAV.param.ContainsKey("Q_ENABLE") &&
-                       (MainV2.comPort.MAV.param["Q_ENABLE"].Value == 1.0);
-            }
-        }
-
         public bool isPlane
         {
             get
@@ -118,7 +108,7 @@ namespace MissionPlanner.GCSViews
             AddBackstageViewPage(typeof(ConfigHWPX4Flow), rm.GetString("backstageViewPagePX4Flow.Text"), true, opt);
             AddBackstageViewPage(typeof(ConfigHWOptFlow), rm.GetString("backstageViewPageoptflow.Text"), isConnected, opt);
             AddBackstageViewPage(typeof(ConfigHWOSD), rm.GetString("backstageViewPageosd.Text"), isConnected, opt);
-            AddBackstageViewPage(typeof(ConfigMount), rm.GetString("backstageViewPagegimbal.Text"), isConnected, opt);
+            AddBackstageViewPage(typeof(ConfigCameraStab), rm.GetString("backstageViewPagegimbal.Text"), isConnected, opt);
             AddBackstageViewPage(typeof(ConfigAntennaTracker), rm.GetString("backstageViewPageAntTrack.Text"), true, opt);
             AddBackstageViewPage(typeof(ConfigMotorTest), rm.GetString("backstageViewPageMotorTest.Text"), isConnected, opt);
             AddBackstageViewPage(typeof(ConfigHWBT), rm.GetString("backstageViewPagehwbt.Text"), true, opt);
