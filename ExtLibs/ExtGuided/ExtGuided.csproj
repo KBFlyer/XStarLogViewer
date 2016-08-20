@@ -55,11 +55,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MissionPlanner.csproj">
-      <Project>{a2e22272-95fe-47b6-b050-9ae7e2055bf5}</Project>
-      <Name>MissionPlanner</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\Comms\MissionPlanner.Comms.csproj">
       <Project>{825e7a10-390c-4a2b-b3a8-491d14966912}</Project>
       <Name>MissionPlanner.Comms</Name>

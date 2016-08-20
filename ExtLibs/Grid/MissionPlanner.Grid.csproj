@@ -70,11 +70,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MissionPlanner.csproj">
-      <Project>{A2E22272-95FE-47B6-B050-9AE7E2055BF5}</Project>
-      <Name>MissionPlanner</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\Comms\MissionPlanner.Comms.csproj">
       <Project>{825E7A10-390C-4A2B-B3A8-491D14966912}</Project>
       <Name>MissionPlanner.Comms</Name>
