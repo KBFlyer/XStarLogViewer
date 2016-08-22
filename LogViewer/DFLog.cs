@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using log4net;
+//using log4net;
 
 namespace AutelXSPLogViewer
 {
@@ -13,7 +13,7 @@ namespace AutelXSPLogViewer
     /// </summary>
     public class DFLog
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+       // private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public struct Label
         {
@@ -223,7 +223,7 @@ namespace AutelXSPLogViewer
             int lineno = 0;
             msoffset = 0;
 
-            log.Info("loading log " + (GC.GetTotalMemory(false)/1024.0/1024.0));
+            //log.Info("loading log " + (GC.GetTotalMemory(false)/1024.0/1024.0));
 
             using (StreamReader sr = new StreamReader(fn))
             {
@@ -241,7 +241,7 @@ namespace AutelXSPLogViewer
                     }
                     catch (OutOfMemoryException ex)
                     {
-                        log.Error(ex);
+                        //log.Error(ex);
                         System.Windows.Forms.MessageBox.Show("out of memory");
                         return answer;
                     }
@@ -251,7 +251,7 @@ namespace AutelXSPLogViewer
                 }
             }
 
-            log.Info("loaded log " + (GC.GetTotalMemory(false)/1024.0/1024.0));
+            //log.Info("loaded log " + (GC.GetTotalMemory(false)/1024.0/1024.0));
 
             return answer;
         }

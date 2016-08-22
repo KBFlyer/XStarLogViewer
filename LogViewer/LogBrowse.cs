@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using System.IO;
-using log4net;
+//using log4net;
 using System.Linq;
 using ZedGraph; // Graphs
 using System.Xml;
@@ -22,7 +22,7 @@ namespace AutelXSPLogViewer
 {
     public partial class LogBrowse : Form
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         DataTable m_dtCSV = new DataTable();
 
         CollectionBuffer logdata;
@@ -409,7 +409,7 @@ namespace AutelXSPLogViewer
             InitializeComponent();
 
             // config map      
-            log.Info("Map Setup");
+            //log.Info("Map Setup");
             gMapControl1.CacheLocation = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar +
                                          "gmapcache" + Path.DirectorySeparatorChar;
 
@@ -659,16 +659,16 @@ namespace AutelXSPLogViewer
 
                 stream = File.Open(FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-                log.Info("before read " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("before read " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
                 logdata = new CollectionBuffer(stream);
 
-                log.Info("got log lines " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("got log lines " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
-                log.Info("about to create DataTable " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("about to create DataTable " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
                 m_dtCSV = new DataTable();
 
-                log.Info("process to datagrid " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("process to datagrid " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
                 Loading.ShowLoading("Scanning coloum widths", this);
 
@@ -702,7 +702,7 @@ namespace AutelXSPLogViewer
                     }
                 }
 
-                log.Info("Done " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("Done " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
                 this.Invoke((Action)delegate
                 {
@@ -722,7 +722,7 @@ namespace AutelXSPLogViewer
             {
                 this.Text = "X-Star Log Viewer - " + Path.GetFileName(FileName);
 
-                log.Info("set dgv datasourse " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("set dgv datasourse " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
 
                 dataGridView1.VirtualMode = true;
@@ -730,10 +730,10 @@ namespace AutelXSPLogViewer
                 dataGridView1.RowCount = logdata.Count;
                 dataGridView1.ColumnCount = m_dtCSV.Columns.Count;
 
-                log.Info("datagrid size set " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("datagrid size set " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
 
-                log.Info("datasource set " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+                //log.Info("datasource set " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
             }
             catch (Exception ex)
             {
@@ -746,13 +746,13 @@ namespace AutelXSPLogViewer
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
-            log.Info("Done timetable " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+            //log.Info("Done timetable " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
             Loading.ShowLoading("Generating Map/Time", this);
 
             DrawMap();
 
-            log.Info("Done map " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+            //log.Info("Done map " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
             try
             {
@@ -760,10 +760,10 @@ namespace AutelXSPLogViewer
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                //log.Error(ex);
             }
 
-            log.Info("Done time " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
+            //log.Info("Done time " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
             CreateChart(zg1);
 
@@ -870,7 +870,7 @@ namespace AutelXSPLogViewer
             }
             catch
             {
-                log.Info("DGV logbrowse error");
+                //log.Info("DGV logbrowse error");
             }
         }
 
@@ -1090,7 +1090,7 @@ namespace AutelXSPLogViewer
                     return;
                 }
 
-                log.Info("Graphing " + type + " - " + fieldname);
+                //log.Info("Graphing " + type + " - " + fieldname);
 
                 Loading.ShowLoading("Graphing " + type + " - " + fieldname, this);
                 GraphItem_GetList(fieldname, type, dflog, dataModifier, left);
@@ -1182,7 +1182,7 @@ namespace AutelXSPLogViewer
                     catch
                     {
                         error++;
-                        log.Info("Bad Data : " + type + " " + col + " " + a);
+                        //log.Info("Bad Data : " + type + " " + col + " " + a);
                         if (error >= 500)
                         {
                             CustomMessageBox.Show("There is to much bad data - failing");
@@ -1605,7 +1605,7 @@ namespace AutelXSPLogViewer
             }
             catch (Exception ex)
             {
-                log.Error(ex);
+                //log.Error(ex);
             }
             if (rtcnt > 0)
                 gMapControl1.RoutesEnabled = true;
@@ -1879,11 +1879,11 @@ namespace AutelXSPLogViewer
             splitContainerGrf.Panel2Collapsed = !splitContainerGrf.Panel2Collapsed;
 
    
-                log.Info("Get map");
+                //log.Info("Get map");
 
                 // DrawMap();
 
-                log.Info("map done");
+                //log.Info("map done");
             
         }
 
