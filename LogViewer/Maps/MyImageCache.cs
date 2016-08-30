@@ -9,7 +9,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 
-namespace AutelXSPLogViewer.Maps
+namespace XStarLogViewer.Maps
 {
     public class MyImageCache : PureImageCache
     {
@@ -24,8 +24,8 @@ namespace AutelXSPLogViewer.Maps
         {
             Instance = this;
 
-            CacheLocation = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar +
-                            "gmapcache" + Path.DirectorySeparatorChar;
+          // CacheLocation = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar +
+           //                "gmapcache" + Path.DirectorySeparatorChar;
         }
 
         /// <summary>

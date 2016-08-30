@@ -1,4 +1,4 @@
-﻿namespace AutelXSPLogViewer
+﻿namespace XStarLogViewer
 {
     partial class Form1
     {

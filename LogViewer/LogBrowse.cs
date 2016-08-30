@@ -18,7 +18,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 //using MissionPlanner.Utilities;
 
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     public partial class LogBrowse : Form
     {
@@ -670,7 +670,7 @@ namespace AutelXSPLogViewer
 
                 //log.Info("process to datagrid " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
-                Loading.ShowLoading("Scanning coloum widths", this);
+                Loading.ShowLoading("Scanning columns widths", this);
 
                 int b = 0;
                 double per = 0;
@@ -2548,7 +2548,7 @@ namespace AutelXSPLogViewer
         }
 
         private void saveAs() { 
-            saveFileDialog1.Filter = "Google Earth File (*.kmz)|*.kmz|GPS Exchange Format (*.gpx)|*.gpx|Log File (*.log)|*.log";
+            saveFileDialog1.Filter = "Google Earth File (*.kmz)|*.kmz|GPS Exchange Format (*.gpx)|*.gpx|Log File (*.log)|*.log|CSV fixed - Excel (*.csv)|*.csv";
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
    
@@ -2563,14 +2563,20 @@ namespace AutelXSPLogViewer
                         this.progressBar1.Step = 1;
                         this.progressBar1.Value = 0;
                         this.progressBar1.Maximum = 100;
-                        this.lblProgMsg.Text = "saving file...";
+                        this.lblProgMsg.Text = "saving "+ ext + " file...";
                         this.lblProgMsg.Refresh();
-
                 if (ext == "LOG")
                 {
-
                     BinaryLog.ConvertBin(this.logfilename, saveFileDialog1.FileName, false);
 
+                }
+               else if (ext == "CSV")
+                {
+                    LogOutput.gridToCSV(dataGridView1, progressBar1, saveFileDialog1.FileName);
+                    this.lblProgMsg.Text = "";
+                    this.progressBar1.Value = 0;
+                    this.Cursor = Cursors.Default;
+                    this.lblProgMsg.Refresh();
                 }
                 else if (ext == "KMZ" || ext == "GPX") {
                     LogOutput lo = new LogOutput();

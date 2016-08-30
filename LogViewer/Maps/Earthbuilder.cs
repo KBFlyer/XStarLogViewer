@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AutelXSPLogViewer.Maps
+namespace XStarLogViewer.Maps
 {
     using System;
     using GMap.NET.Projections;

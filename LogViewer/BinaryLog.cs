@@ -7,7 +7,7 @@ using MissionPlanner.Controls;
 using System.Windows.Forms;
 using uint8_t = System.Byte;
 
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     /// <summary>
     /// Convert a binary log to an assci log
@@ -107,10 +107,11 @@ namespace AutelXSPLogViewer
                                 lastper = (int)per;
 
                             LogBrowse frm = (LogBrowse)LogBrowse.ActiveForm;
-                            frm.Invoke(new MethodInvoker(() =>
-                            {
-                                frm.setProgressVal(lastper);
-                            }));
+                            if (frm!= null)
+                                frm.Invoke(new MethodInvoker(() =>
+                                {
+                                    frm.setProgressVal(lastper);
+                                }));
                             
                             }
                             if (displaytimer.Second != DateTime.Now.Second)

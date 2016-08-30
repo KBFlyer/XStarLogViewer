@@ -1,5 +1,5 @@
 ﻿
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     partial class LogBrowse
     {

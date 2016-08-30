@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MissionPlanner.Utilities</RootNamespace>
     <AssemblyName>MissionPlanner.Utilities</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -33,10 +33,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>mykey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitMiracle.LibTiff.NET">
-      <HintPath>..\..\packages\BitMiracle.LibTiff.NET.2.4.518.0\lib\net20\BitMiracle.LibTiff.NET.dll</HintPath>
-    </Reference>
     <Reference Include="DirectShowLib-2005">
       <HintPath>..\..\ExtLibs\DirectShowLib-2005.dll</HintPath>
       <Private>False</Private>
@@ -84,9 +87,7 @@
     <Compile Include="CircularStream.cs" />
     <Compile Include="CleanDrivers.cs" />
     <Compile Include="CollectionExtensions.cs" />
-    <Compile Include="DTED.cs" />
     <Compile Include="EnumTranslator.cs" />
-    <Compile Include="GeoTiff.cs" />
     <Compile Include="hires.cs" />
     <Compile Include="KIndex.cs" />
     <Compile Include="L10NU.cs" />
@@ -103,7 +104,6 @@
     </Compile>
     <Compile Include="Rect.cs" />
     <Compile Include="Speech.cs" />
-    <Compile Include="srtm.cs" />
     <Compile Include="TCPConsole.cs" />
     <Compile Include="tfr.cs" />
     <Compile Include="Tracking.cs" />
@@ -130,6 +130,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="mykey.snk" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

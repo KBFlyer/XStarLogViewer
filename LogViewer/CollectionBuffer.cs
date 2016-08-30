@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     public class CollectionBuffer : IEnumerable<String>, IDisposable
     {

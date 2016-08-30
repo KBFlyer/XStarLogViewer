@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     public partial class OptionForm : Form
     {

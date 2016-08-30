@@ -16,14 +16,14 @@ using KMLib.Geometry;
 //using log4net;
 using MissionPlanner.Utilities;
 
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     public class LogOutput
     {
         //private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         string lastline = "";
-        string[] ctunlast = new string[] {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
-        string[] ntunlast = new string[] {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+        string[] ctunlast = new string[] { "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
+        string[] ntunlast = new string[] { "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
         // wp list
         List<PointLatLngAlt> cmd = new List<PointLatLngAlt>();
@@ -210,11 +210,11 @@ namespace AutelXSPLogViewer
                             oldlastpos = lastpos;
 
                             runmodel.Orientation.roll =
-                                double.Parse(items[dflog.FindMessageOffset("ATT", "Roll")],CultureInfo.InvariantCulture) / -1;
+                                double.Parse(items[dflog.FindMessageOffset("ATT", "Roll")], CultureInfo.InvariantCulture) / -1;
                             runmodel.Orientation.tilt =
-                                double.Parse(items[dflog.FindMessageOffset("ATT", "Pitch")],CultureInfo.InvariantCulture) / -1;
+                                double.Parse(items[dflog.FindMessageOffset("ATT", "Pitch")], CultureInfo.InvariantCulture) / -1;
                             runmodel.Orientation.heading =
-                                double.Parse(items[dflog.FindMessageOffset("ATT", "Yaw")],CultureInfo.InvariantCulture) / 1;
+                                double.Parse(items[dflog.FindMessageOffset("ATT", "Yaw")], CultureInfo.InvariantCulture) / 1;
 
                             dat.model = runmodel;
                             dat.ctun = ctunlast;
@@ -263,7 +263,7 @@ namespace AutelXSPLogViewer
                 // 1 speed = 0.1    10 / 1  = 0.1
                 data.Append(@"
         <gx:FlyTo>
-            <gx:duration>" + ((gpspackets - lastgpspacket)*0.1) + @"</gx:duration>
+            <gx:duration>" + ((gpspackets - lastgpspacket) * 0.1) + @"</gx:duration>
             <gx:flyToMode>smooth</gx:flyToMode>
             <Camera>
                 <longitude>" + mod.model.Location.longitude.ToString(new System.Globalization.CultureInfo("en-US")) +
@@ -312,7 +312,7 @@ namespace AutelXSPLogViewer
 
             // entry 1
             string entryName = ZipEntry.CleanName(Path.GetFileName(filename));
-                // Removes drive from name and fixes slash direction
+            // Removes drive from name and fixes slash direction
             ZipEntry newEntry = new ZipEntry(entryName);
             newEntry.DateTime = DateTime.Now;
 
@@ -334,7 +334,7 @@ namespace AutelXSPLogViewer
 
             // entry 2
             entryName = ZipEntry.CleanName(Path.GetFileName(filename));
-                // Removes drive from name and fixes slash direction
+            // Removes drive from name and fixes slash direction
             newEntry = new ZipEntry(entryName);
             newEntry.DateTime = DateTime.Now;
 
@@ -361,6 +361,41 @@ namespace AutelXSPLogViewer
             cmdraw.Clear();
         }
 
+
+        public static void gridToCSV(DataGridView grid, ProgressBar pb, string filename) {
+            int b = 0;
+            double per = 0;
+            int lastper = 0;
+            double cnt = (double)grid.Rows.Count;
+            using (StreamWriter stream = new StreamWriter(filename))
+            {
+                var headers = grid.Columns.Cast<DataGridViewColumn>();
+                string[] arr = new string[headers.Count()];
+                arr[0] = "\"rownumber\"";
+                arr[1] = "\"datetime\"";
+                arr[2] = "\"type\"";
+                for (int i = 3; i < headers.Count(); i++) {
+                    arr[i] = "\"F" + (i - 2).ToString() + "\"";
+                }
+                stream.WriteLine(string.Join(",", arr));
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    b++;
+                    per = (b / cnt) * 100.0f;
+                    if ((int)per != lastper)
+                    {
+                        lastper = (int)per;
+                        pb.Value = lastper;
+                    }
+
+                    var cells = row.Cells.Cast<DataGridViewCell>();
+                    stream.WriteLine(string.Join(",", cells.Select(cell => cell.Value).ToArray()));
+                    //stream.WriteLine(string.Join(",", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
+
+                }
+            }
+
+        }
 
         public void writeGPX(string filename)
         {

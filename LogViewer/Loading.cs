@@ -10,7 +10,7 @@ using System.Windows.Forms;
 //using IronPython.Runtime;
 using MissionPlanner.Utilities;
 
-namespace AutelXSPLogViewer
+namespace XStarLogViewer
 {
     public partial class Loading : Form
     {
